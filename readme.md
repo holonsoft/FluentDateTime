@@ -1,22 +1,11 @@
 # <img src="/src/icon.png" height="30px"> FluentDateTime
 
-[![Build status](https://ci.appveyor.com/api/projects/status/me89rbu5iv976k2q/branch/master?svg=true)](https://ci.appveyor.com/project/SimonCropp/fluentdatetime)
-[![NuGet Status](https://img.shields.io/nuget/v/FluentDateTime.svg?label=FluentDateTime&cacheSeconds=86400)](https://www.nuget.org/packages/FluentDateTime/)
-
 Allows cleaner DateTime expressions and operations.
 
 Inspired by Ruby DateTime Extensions
 
  * [Extensions To Datetime](http://edgeguides.rubyonrails.org/active_support_core_extensions.html#extensions-to-datetime)
  * [Extensions To Time](http://edgeguides.rubyonrails.org/active_support_core_extensions.html#extensions-to-time)
-
-
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-fluentdatetime?utm_source=nuget-fluentdatetime&utm_medium=referral&utm_campaign=enterprise).
-
-
-## NuGet
-
-https://nuget.org/packages/FluentDateTime/
 
 
 ## Usage
