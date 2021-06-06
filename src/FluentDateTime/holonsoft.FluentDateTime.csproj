@@ -2,12 +2,12 @@
   <PropertyGroup>
       <TargetFrameworks>netcoreapp3.1;net472;net48;net5.0</TargetFrameworks>
     <NoWarn>CS1591</NoWarn>
-    <PackageTags>#fluent#datetime#net5#netcore3.1#netcoreapp3.1#net472#net48</PackageTags>
+    <PackageTags>#fluent#datetime#net5#netcore3.1#netcoreapp3.1#net472#net48#netstandard2.0</PackageTags>
     <Description>Allows cleaner DateTime expressions and operations. 
 Special thanks to original project FluentDateTime/Simon Cropp</Description>
     <RootNamespace>holonsoft.FluentDateTime</RootNamespace>
     <AssemblyName>holonsoft.FluentDateTime</AssemblyName>
-    <Version>1.4.1</Version>
+    <Version>1.4.1.1</Version>
     <Copyright>holonsoft</Copyright>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/holonsoft/FluentDateTime</RepositoryUrl>
@@ -15,6 +15,8 @@ Special thanks to original project FluentDateTime/Simon Cropp</Description>
     <RepositoryType>GIT</RepositoryType>
     <PackageReleaseNotes>This is a fork from the famous https://github.com/FluentDateTime/FluentDateTime, ported to some more and newer framework versions ... and a lot of new stuff :-)</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Alexander Bülow, Christian Vogt</Authors>
+    <Company>holonsoft</Company>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\license.txt">
