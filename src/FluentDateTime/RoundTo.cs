@@ -1,4 +1,4 @@
-﻿namespace FluentDate
+﻿namespace holonsoft.FluentDateTime
 {
     /// <summary>
     /// Used for rounding precision

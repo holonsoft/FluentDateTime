@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FluentDate
+namespace holonsoft.FluentDateTime
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct FluentTimeSpan :

@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+      <TargetFrameworks>netcoreapp3.1;net472;net48;net5.0</TargetFrameworks>
     <NoWarn>CS1591</NoWarn>
     <PackageTags>DateTime</PackageTags>
     <Description>Allows cleaner DateTime expressions and operations</Description>
+    <RootNamespace>holonsoft.FluentDateTime</RootNamespace>
+    <AssemblyName>holonsoft.FluentDateTime</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="ProjectDefaults" Version="1.0.54" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
-  </ItemGroup>
 </Project>

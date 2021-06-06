@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentDate
+namespace holonsoft.FluentDateTime
 {
     /// <summary>
     /// Static class containing Fluent <see cref="DateTime"/> extension methods.

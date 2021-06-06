@@ -1,8 +1,7 @@
-﻿using System.Globalization;
-using System;
-using FluentDate;
+﻿using System;
+using System.Globalization;
 
-namespace FluentDateTimeOffset
+namespace holonsoft.FluentDateTime.DateTimeOffset
 {
     /// <summary>
     /// Static class containing Fluent <see cref="DateTimeOffset"/> extension methods.
@@ -12,7 +11,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns a new <see cref="DateTime"/> that adds the value of the specified <see cref="FluentTimeSpan"/> to the value of this instance.
         /// </summary>
-        public static DateTimeOffset AddFluentTimeSpan(this DateTimeOffset dateTimeOffset, FluentTimeSpan timeSpan)
+        public static System.DateTimeOffset AddFluentTimeSpan(this System.DateTimeOffset dateTimeOffset, FluentTimeSpan timeSpan)
         {
             return dateTimeOffset.AddMonths(timeSpan.Months)
                 .AddYears(timeSpan.Years)
@@ -22,7 +21,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns a new <see cref="DateTime"/> that subtracts the value of the specified <see cref="FluentTimeSpan"/> to the value of this instance.
         /// </summary>
-        public static DateTimeOffset SubtractFluentTimeSpan(this DateTimeOffset dateTimeOffset, FluentTimeSpan timeSpan)
+        public static System.DateTimeOffset SubtractFluentTimeSpan(this System.DateTimeOffset dateTimeOffset, FluentTimeSpan timeSpan)
         {
             return dateTimeOffset.AddMonths(-timeSpan.Months)
                 .AddYears(-timeSpan.Years)
@@ -32,59 +31,59 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns the very end of the given day (the last millisecond of the last hour for the given <see cref="DateTimeOffset"/>).
         /// </summary>
-        public static DateTimeOffset EndOfDay(this DateTimeOffset date)
+        public static System.DateTimeOffset EndOfDay(this System.DateTimeOffset date)
         {
-            return new DateTimeOffset(date.Year, date.Month, date.Day, 23, 59, 59, 999, date.Offset);
+            return new System.DateTimeOffset(date.Year, date.Month, date.Day, 23, 59, 59, 999, date.Offset);
         }
 
         /// <summary>
         /// Returns the Start of the given day (the first millisecond of the given <see cref="DateTimeOffset"/>).
         /// </summary>
-        public static DateTimeOffset BeginningOfDay(this DateTimeOffset date)
+        public static System.DateTimeOffset BeginningOfDay(this System.DateTimeOffset date)
         {
-            return new DateTimeOffset(date.Year, date.Month, date.Day, 0, 0, 0, date.Offset);
+            return new System.DateTimeOffset(date.Year, date.Month, date.Day, 0, 0, 0, date.Offset);
         }
 
         /// <summary>
         /// Returns the same date (same Day, Month, Hour, Minute, Second etc) in the next calendar year.
         /// If that day does not exist in next year in same month, number of missing days is added to the last day in same month next year.
         /// </summary>
-        public static DateTimeOffset NextYear(this DateTimeOffset start)
+        public static System.DateTimeOffset NextYear(this System.DateTimeOffset start)
         {
             var nextYear = start.Year + 1;
-            var numberOfDaysInSameMonthNextYear = DateTime.DaysInMonth(nextYear, start.Month);
+            var numberOfDaysInSameMonthNextYear = System.DateTime.DaysInMonth(nextYear, start.Month);
 
             if (numberOfDaysInSameMonthNextYear < start.Day)
             {
                 var differenceInDays = start.Day - numberOfDaysInSameMonthNextYear;
-                var dateTimeOffset = new DateTimeOffset(nextYear, start.Month, numberOfDaysInSameMonthNextYear, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
+                var dateTimeOffset = new System.DateTimeOffset(nextYear, start.Month, numberOfDaysInSameMonthNextYear, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
                 return dateTimeOffset + differenceInDays.Days();
             }
-            return new DateTimeOffset(nextYear, start.Month, start.Day, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
+            return new System.DateTimeOffset(nextYear, start.Month, start.Day, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
         }
 
         /// <summary>
         /// Returns the same date (same Day, Month, Hour, Minute, Second etc) in the previous calendar year.
         /// If that day does not exist in previous year in same month, number of missing days is added to the last day in same month previous year.
         /// </summary>
-        public static DateTimeOffset PreviousYear(this DateTimeOffset start)
+        public static System.DateTimeOffset PreviousYear(this System.DateTimeOffset start)
         {
             var previousYear = start.Year - 1;
-            var numberOfDaysInSameMonthPreviousYear = DateTime.DaysInMonth(previousYear, start.Month);
+            var numberOfDaysInSameMonthPreviousYear = System.DateTime.DaysInMonth(previousYear, start.Month);
 
             if (numberOfDaysInSameMonthPreviousYear < start.Day)
             {
                 var differenceInDays = start.Day - numberOfDaysInSameMonthPreviousYear;
-                var dateTime = new DateTimeOffset(previousYear, start.Month, numberOfDaysInSameMonthPreviousYear, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
+                var dateTime = new System.DateTimeOffset(previousYear, start.Month, numberOfDaysInSameMonthPreviousYear, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
                 return dateTime + differenceInDays.Days();
             }
-            return new DateTimeOffset(previousYear, start.Month, start.Day, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
+            return new System.DateTimeOffset(previousYear, start.Month, start.Day, start.Hour, start.Minute, start.Second, start.Millisecond, start.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> increased by 24 hours ie Next Day.
         /// </summary>
-        public static DateTimeOffset NextDay(this DateTimeOffset start)
+        public static System.DateTimeOffset NextDay(this System.DateTimeOffset start)
         {
             return start + 1.Days();
         }
@@ -92,7 +91,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> decreased by 24h period ie Previous Day.
         /// </summary>
-        public static DateTimeOffset PreviousDay(this DateTimeOffset start)
+        public static System.DateTimeOffset PreviousDay(this System.DateTimeOffset start)
         {
             return start - 1.Days();
         }
@@ -100,7 +99,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns first next occurrence of specified <see cref="DayOfWeek"/>.
         /// </summary>
-        public static DateTimeOffset Next(this DateTimeOffset start, DayOfWeek day)
+        public static System.DateTimeOffset Next(this System.DateTimeOffset start, DayOfWeek day)
         {
             do
             {
@@ -113,7 +112,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns first next occurrence of specified <see cref="DayOfWeek"/>.
         /// </summary>
-        public static DateTimeOffset Previous(this DateTimeOffset start, DayOfWeek day)
+        public static System.DateTimeOffset Previous(this System.DateTimeOffset start, DayOfWeek day)
         {
             do
             {
@@ -126,7 +125,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Increases supplied <see cref="DateTimeOffset"/> for 7 days ie returns the Next Week.
         /// </summary>
-        public static DateTimeOffset WeekAfter(this DateTimeOffset start)
+        public static System.DateTimeOffset WeekAfter(this System.DateTimeOffset start)
         {
             return start + 1.Weeks();
         }
@@ -134,7 +133,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Decreases supplied <see cref="DateTimeOffset"/> for 7 days ie returns the Previous Week.
         /// </summary>
-        public static DateTimeOffset WeekEarlier(this DateTimeOffset start)
+        public static System.DateTimeOffset WeekEarlier(this System.DateTimeOffset start)
         {
             return start - 1.Weeks();
         }
@@ -142,7 +141,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Increases the <see cref="DateTimeOffset"/> object with given <see cref="TimeSpan"/> value.
         /// </summary>
-        public static DateTimeOffset IncreaseTime(this DateTimeOffset startDate, TimeSpan toAdd)
+        public static System.DateTimeOffset IncreaseTime(this System.DateTimeOffset startDate, TimeSpan toAdd)
         {
             return startDate + toAdd;
         }
@@ -150,7 +149,7 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Decreases the <see cref="DateTimeOffset"/> object with given <see cref="TimeSpan"/> value.
         /// </summary>
-        public static DateTimeOffset DecreaseTime(this DateTimeOffset startDate, TimeSpan toSubtract)
+        public static System.DateTimeOffset DecreaseTime(this System.DateTimeOffset startDate, TimeSpan toSubtract)
         {
             return startDate - toSubtract;
         }
@@ -158,71 +157,71 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns the original <see cref="DateTimeOffset"/> with Hour part changed to supplied hour parameter.
         /// </summary>
-        public static DateTimeOffset SetTime(this DateTimeOffset originalDate, int hour)
+        public static System.DateTimeOffset SetTime(this System.DateTimeOffset originalDate, int hour)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, originalDate.Minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, originalDate.Minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns the original <see cref="DateTimeOffset"/> with Hour and Minute parts changed to supplied hour and minute parameters.
         /// </summary>
-        public static DateTimeOffset SetTime(this DateTimeOffset originalDate, int hour, int minute)
+        public static System.DateTimeOffset SetTime(this System.DateTimeOffset originalDate, int hour, int minute)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns the original <see cref="DateTimeOffset"/> with Hour, Minute and Second parts changed to supplied hour, minute and second parameters.
         /// </summary>
-        public static DateTimeOffset SetTime(this DateTimeOffset originalDate, int hour, int minute, int second)
+        public static System.DateTimeOffset SetTime(this System.DateTimeOffset originalDate, int hour, int minute, int second)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, minute, second, originalDate.Millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, minute, second, originalDate.Millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns the original <see cref="DateTimeOffset"/> with Hour, Minute, Second and Millisecond parts changed to supplied hour, minute, second and millisecond parameters.
         /// </summary>
-        public static DateTimeOffset SetTime(this DateTimeOffset originalDate, int hour, int minute, int second, int millisecond)
+        public static System.DateTimeOffset SetTime(this System.DateTimeOffset originalDate, int hour, int minute, int second, int millisecond)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, minute, second, millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, minute, second, millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Hour part.
         /// </summary>
-        public static DateTimeOffset SetHour(this DateTimeOffset originalDate, int hour)
+        public static System.DateTimeOffset SetHour(this System.DateTimeOffset originalDate, int hour)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, originalDate.Minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, hour, originalDate.Minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Minute part.
         /// </summary>
-        public static DateTimeOffset SetMinute(this DateTimeOffset originalDate, int minute)
+        public static System.DateTimeOffset SetMinute(this System.DateTimeOffset originalDate, int minute)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, originalDate.Hour, minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, originalDate.Hour, minute, originalDate.Second, originalDate.Millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Second part.
         /// </summary>
-        public static DateTimeOffset SetSecond(this DateTimeOffset originalDate, int second)
+        public static System.DateTimeOffset SetSecond(this System.DateTimeOffset originalDate, int second)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, originalDate.Hour, originalDate.Minute, second, originalDate.Millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, originalDate.Hour, originalDate.Minute, second, originalDate.Millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Millisecond part.
         /// </summary>
-        public static DateTimeOffset SetMillisecond(this DateTimeOffset originalDate, int millisecond)
+        public static System.DateTimeOffset SetMillisecond(this System.DateTimeOffset originalDate, int millisecond)
         {
-            return new DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, originalDate.Hour, originalDate.Minute, originalDate.Second, millisecond, originalDate.Offset);
+            return new System.DateTimeOffset(originalDate.Year, originalDate.Month, originalDate.Day, originalDate.Hour, originalDate.Minute, originalDate.Second, millisecond, originalDate.Offset);
         }
 
         /// <summary>
         /// Returns original <see cref="DateTimeOffset"/> value with time part set to midnight (alias for <see cref="BeginningOfDay"/> method).
         /// </summary>
-        public static DateTimeOffset Midnight(this DateTimeOffset value)
+        public static System.DateTimeOffset Midnight(this System.DateTimeOffset value)
         {
             return value.BeginningOfDay();
         }
@@ -232,7 +231,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="value">The <see cref="DateTimeOffset"/> find Noon for.</param>
         /// <returns>A <see cref="DateTimeOffset"/> value with time part set to Noon (12:00:00h).</returns>
-        public static DateTimeOffset Noon(this DateTimeOffset value)
+        public static System.DateTimeOffset Noon(this System.DateTimeOffset value)
         {
             return value.SetTime(12, 0, 0, 0);
         }
@@ -240,49 +239,49 @@ namespace FluentDateTimeOffset
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Year part.
         /// </summary>
-        public static DateTimeOffset SetDate(this DateTimeOffset value, int year)
+        public static System.DateTimeOffset SetDate(this System.DateTimeOffset value, int year)
         {
-            return new DateTimeOffset(year, value.Month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
+            return new System.DateTimeOffset(year, value.Month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Year and Month part.
         /// </summary>
-        public static DateTimeOffset SetDate(this DateTimeOffset value, int year, int month)
+        public static System.DateTimeOffset SetDate(this System.DateTimeOffset value, int year, int month)
         {
-            return new DateTimeOffset(year, month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
+            return new System.DateTimeOffset(year, month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Year, Month and Day part.
         /// </summary>
-        public static DateTimeOffset SetDate(this DateTimeOffset value, int year, int month, int day)
+        public static System.DateTimeOffset SetDate(this System.DateTimeOffset value, int year, int month, int day)
         {
-            return new DateTimeOffset(year, month, day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
+            return new System.DateTimeOffset(year, month, day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Year part.
         /// </summary>
-        public static DateTimeOffset SetYear(this DateTimeOffset value, int year)
+        public static System.DateTimeOffset SetYear(this System.DateTimeOffset value, int year)
         {
-            return new DateTimeOffset(year, value.Month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
+            return new System.DateTimeOffset(year, value.Month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Month part.
         /// </summary>
-        public static DateTimeOffset SetMonth(this DateTimeOffset value, int month)
+        public static System.DateTimeOffset SetMonth(this System.DateTimeOffset value, int month)
         {
-            return new DateTimeOffset(value.Year, month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
+            return new System.DateTimeOffset(value.Year, month, value.Day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
         }
 
         /// <summary>
         /// Returns <see cref="DateTimeOffset"/> with changed Day part.
         /// </summary>
-        public static DateTimeOffset SetDay(this DateTimeOffset value, int day)
+        public static System.DateTimeOffset SetDay(this System.DateTimeOffset value, int day)
         {
-            return new DateTimeOffset(value.Year, value.Month, day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
+            return new System.DateTimeOffset(value.Year, value.Month, day, value.Hour, value.Minute, value.Second, value.Millisecond, value.Offset);
         }
 
         /// <summary>
@@ -293,7 +292,7 @@ namespace FluentDateTimeOffset
         /// <returns>
         /// 	<c>true</c> if the specified current is before; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsBefore(this DateTimeOffset current, DateTimeOffset toCompareWith)
+        public static bool IsBefore(this System.DateTimeOffset current, System.DateTimeOffset toCompareWith)
         {
             return current < toCompareWith;
         }
@@ -306,7 +305,7 @@ namespace FluentDateTimeOffset
         /// <returns>
         /// 	<c>true</c> if the specified current is after; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsAfter(this DateTimeOffset current, DateTimeOffset toCompareWith)
+        public static bool IsAfter(this System.DateTimeOffset current, System.DateTimeOffset toCompareWith)
         {
             return current > toCompareWith;
         }
@@ -318,7 +317,7 @@ namespace FluentDateTimeOffset
         /// <param name="hour">The hour to set time to.</param>
         /// <param name="minute">The minute to set time to.</param>
         /// <returns><see cref="DateTimeOffset"/> with hour and minute set to given values.</returns>
-        public static DateTimeOffset At(this DateTimeOffset current, int hour, int minute)
+        public static System.DateTimeOffset At(this System.DateTimeOffset current, int hour, int minute)
         {
             return current.SetTime(hour, minute);
         }
@@ -331,7 +330,7 @@ namespace FluentDateTimeOffset
         /// <param name="minute">The minute to set time to.</param>
         /// <param name="second">The second to set time to.</param>
         /// <returns><see cref="DateTimeOffset"/> with hour and minutes and seconds set to given values.</returns>
-        public static DateTimeOffset At(this DateTimeOffset current, int hour, int minute, int second)
+        public static System.DateTimeOffset At(this System.DateTimeOffset current, int hour, int minute, int second)
         {
             return current.SetTime(hour, minute, second);
         }
@@ -345,7 +344,7 @@ namespace FluentDateTimeOffset
         /// <param name="second">The second to set time to.</param>
         /// <param name="milliseconds">The milliseconds to set time to.</param>
         /// <returns><see cref="DateTimeOffset"/> with hour and minutes and seconds set to given values.</returns>
-        public static DateTimeOffset At(this DateTimeOffset current, int hour, int minute, int second, int milliseconds)
+        public static System.DateTimeOffset At(this System.DateTimeOffset current, int hour, int minute, int second, int milliseconds)
         {
             return current.SetTime(hour, minute, second, milliseconds);
         }
@@ -356,7 +355,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current"></param>
         /// <returns>given <see cref="DateTimeOffset"/> with the day part set to the first day in the quarter.</returns>
-        public static DateTimeOffset FirstDayOfQuarter(this DateTimeOffset current)
+        public static System.DateTimeOffset FirstDayOfQuarter(this System.DateTimeOffset current)
         {
             var currentQuarter = (current.Month - 1) / 3 + 1;
             return current.SetDate(current.Year, 3 * currentQuarter - 2, 1);
@@ -367,7 +366,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current">The current <see cref="DateTimeOffset"/> to be changed.</param>
         /// <returns>given <see cref="DateTimeOffset"/> with the day part set to the first day in that month.</returns>
-        public static DateTimeOffset FirstDayOfMonth(this DateTimeOffset current)
+        public static System.DateTimeOffset FirstDayOfMonth(this System.DateTimeOffset current)
         {
             return current.SetDay(1);
         }
@@ -378,7 +377,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current"></param>
         /// <returns>given <see cref="DateTimeOffset"/> with the day part set to the last day in the quarter.</returns>
-        public static DateTimeOffset LastDayOfQuarter(this DateTimeOffset current)
+        public static System.DateTimeOffset LastDayOfQuarter(this System.DateTimeOffset current)
         {
             var currentQuarter = (current.Month - 1) / 3 + 1;
             var firstDay = current.SetDate(current.Year, 3 * currentQuarter - 2, 1);
@@ -390,9 +389,9 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current">The current DateTimeOffset to be changed.</param>
         /// <returns>given <see cref="DateTimeOffset"/> with the day part set to the last day in that month.</returns>
-        public static DateTimeOffset LastDayOfMonth(this DateTimeOffset current)
+        public static System.DateTimeOffset LastDayOfMonth(this System.DateTimeOffset current)
         {
-            return current.SetDay(DateTime.DaysInMonth(current.Year, current.Month));
+            return current.SetDay(System.DateTime.DaysInMonth(current.Year, current.Month));
         }
 
         /// <summary>
@@ -401,7 +400,7 @@ namespace FluentDateTimeOffset
         /// <param name="current">The date to be changed.</param>
         /// <param name="days">Number of business days to be added.</param>
         /// <returns>A <see cref="DateTimeOffset"/> increased by a given number of business days.</returns>
-        public static DateTimeOffset AddBusinessDays(this DateTimeOffset current, int days)
+        public static System.DateTimeOffset AddBusinessDays(this System.DateTimeOffset current, int days)
         {
             var sign = Math.Sign(days);
             var unsignedDays = Math.Abs(days);
@@ -422,7 +421,7 @@ namespace FluentDateTimeOffset
         /// <param name="current">The date to be changed.</param>
         /// <param name="days">Number of business days to be subtracted.</param>
         /// <returns>A <see cref="DateTimeOffset"/> increased by a given number of business days.</returns>
-        public static DateTimeOffset SubtractBusinessDays(this DateTimeOffset current, int days)
+        public static System.DateTimeOffset SubtractBusinessDays(this System.DateTimeOffset current, int days)
         {
             return AddBusinessDays(current, -days);
         }
@@ -432,9 +431,9 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="dateTime">The date to be checked.</param>
         /// <returns><c>true</c> if <paramref name="dateTime"/> is in the future; otherwise <c>false</c>.</returns>
-        public static bool IsInFuture(this DateTimeOffset dateTime)
+        public static bool IsInFuture(this System.DateTimeOffset dateTime)
         {
-            return dateTime > DateTimeOffset.Now;
+            return dateTime > System.DateTimeOffset.Now;
         }
 
         /// <summary>
@@ -442,24 +441,24 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="dateTime">The date to be checked.</param>
         /// <returns><c>true</c> if <paramref name="dateTime"/> is in the past; otherwise <c>false</c>.</returns>
-        public static bool IsInPast(this DateTimeOffset dateTime)
+        public static bool IsInPast(this System.DateTimeOffset dateTime)
         {
-            return dateTime < DateTimeOffset.Now;
+            return dateTime < System.DateTimeOffset.Now;
         }
 
         /// <summary>
         /// Rounds <paramref name="dateTime"/> to the nearest <see cref="RoundTo"/>.
         /// </summary>
         /// <returns>The rounded <see cref="DateTimeOffset"/>.</returns>
-        public static DateTimeOffset Round(this DateTimeOffset dateTime, RoundTo rt)
+        public static System.DateTimeOffset Round(this System.DateTimeOffset dateTime, RoundTo rt)
         {
-            DateTimeOffset rounded;
+            System.DateTimeOffset rounded;
 
             switch (rt)
             {
                 case RoundTo.Second:
                     {
-                        rounded = new DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Offset);
+                        rounded = new System.DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Offset);
                         if (dateTime.Millisecond >= 500)
                         {
                             rounded = rounded.AddSeconds(1);
@@ -468,7 +467,7 @@ namespace FluentDateTimeOffset
                     }
                 case RoundTo.Minute:
                     {
-                        rounded = new DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, 0, dateTime.Offset);
+                        rounded = new System.DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, 0, dateTime.Offset);
                         if (dateTime.Second >= 30)
                         {
                             rounded = rounded.AddMinutes(1);
@@ -477,7 +476,7 @@ namespace FluentDateTimeOffset
                     }
                 case RoundTo.Hour:
                     {
-                        rounded = new DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, 0, 0, dateTime.Offset);
+                        rounded = new System.DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, 0, 0, dateTime.Offset);
                         if (dateTime.Minute >= 30)
                         {
                             rounded = rounded.AddHours(1);
@@ -486,7 +485,7 @@ namespace FluentDateTimeOffset
                     }
                 case RoundTo.Day:
                     {
-                        rounded = new DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0, dateTime.Offset);
+                        rounded = new System.DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0, dateTime.Offset);
                         if (dateTime.Hour >= 12)
                         {
                             rounded = rounded.AddDays(1);
@@ -508,7 +507,7 @@ namespace FluentDateTimeOffset
         /// <param name="dateTime">The DateTimeOffset to adjust</param>
         /// <returns>A DateTimeOffset instance adjusted to the beginning of the current week</returns>
         /// <remarks>the beginning of the week is controlled by the current Culture</remarks>
-        public static DateTimeOffset FirstDayOfWeek(this DateTimeOffset dateTime)
+        public static System.DateTimeOffset FirstDayOfWeek(this System.DateTimeOffset dateTime)
         {
             var currentCulture = CultureInfo.CurrentCulture;
             var firstDayOfWeek = currentCulture.DateTimeFormat.FirstDayOfWeek;
@@ -524,7 +523,7 @@ namespace FluentDateTimeOffset
         /// <param name="dateTime"></param>
         /// <returns></returns>
         [Obsolete("This method has been renamed to FirstDayOfWeek to be more consistent with existing conventions.")]
-        public static DateTimeOffset StartOfWeek(this DateTimeOffset dateTime)
+        public static System.DateTimeOffset StartOfWeek(this System.DateTimeOffset dateTime)
         {
             return FirstDayOfWeek(dateTime);
         }
@@ -534,7 +533,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current">The DateTimeOffset to adjust</param>
         /// <returns></returns>
-        public static DateTimeOffset FirstDayOfYear(this DateTimeOffset current)
+        public static System.DateTimeOffset FirstDayOfYear(this System.DateTimeOffset current)
         {
             return current.SetDate(current.Year, 1, 1);
         }
@@ -544,7 +543,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current">The DateTimeOffset to adjust</param>
         /// <returns></returns>
-        public static DateTimeOffset LastDayOfWeek(this DateTimeOffset current)
+        public static System.DateTimeOffset LastDayOfWeek(this System.DateTimeOffset current)
         {
             return current.FirstDayOfWeek().AddDays(6);
         }
@@ -554,7 +553,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current">The DateTimeOffset to adjust</param>
         /// <returns></returns>
-        public static DateTimeOffset LastDayOfYear(this DateTimeOffset current)
+        public static System.DateTimeOffset LastDayOfYear(this System.DateTimeOffset current)
         {
             return current.SetDate(current.Year, 12, 31);
         }
@@ -565,7 +564,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current">The DateTimeOffset to adjust</param>
         /// <returns></returns>
-        public static DateTimeOffset PreviousMonth(this DateTimeOffset current)
+        public static System.DateTimeOffset PreviousMonth(this System.DateTimeOffset current)
         {
             var year = current.Month == 1 ? current.Year - 1 : current.Year;
 
@@ -586,7 +585,7 @@ namespace FluentDateTimeOffset
         /// </summary>
         /// <param name="current">The DateTimeOffset to adjust</param>
         /// <returns></returns>
-        public static DateTimeOffset NextMonth(this DateTimeOffset current)
+        public static System.DateTimeOffset NextMonth(this System.DateTimeOffset current)
         {
 
             var year = current.Month == 12 ? current.Year + 1 : current.Year;
@@ -610,7 +609,7 @@ namespace FluentDateTimeOffset
         /// <returns>
         /// 	<c>true</c> if the specified date is exactly the same year then current; otherwise, <c>false</c>.
         /// </returns>
-        public static bool SameDay(this DateTimeOffset current, DateTimeOffset date)
+        public static bool SameDay(this System.DateTimeOffset current, System.DateTimeOffset date)
         {
             return current.Date == date.Date;
         }
@@ -623,7 +622,7 @@ namespace FluentDateTimeOffset
         /// <returns>
         /// 	<c>true</c> if the specified date is exactly the same month and year then current; otherwise, <c>false</c>.
         /// </returns>
-        public static bool SameMonth(this DateTimeOffset current, DateTimeOffset date)
+        public static bool SameMonth(this System.DateTimeOffset current, System.DateTimeOffset date)
         {
             return current.Month == date.Month && current.Year == date.Year;
         }
@@ -636,7 +635,7 @@ namespace FluentDateTimeOffset
         /// <returns>
         /// 	<c>true</c> if the specified date is exactly the same date then current; otherwise, <c>false</c>.
         /// </returns>
-        public static bool SameYear(this DateTimeOffset current, DateTimeOffset date)
+        public static bool SameYear(this System.DateTimeOffset current, System.DateTimeOffset date)
         {
             return current.Year == date.Year;
         }
